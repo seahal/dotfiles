@@ -10,7 +10,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use 'alacritty' if it is
   # available, otherwise 'xterm-256color' is used.
-  #TERM: xterm-256color
+
 
 window:
   # Window dimensions (changes require restart)
@@ -87,20 +87,17 @@ tabspaces: 8
 font:
   normal:
   # Normal (roman) font face
-    family: RictyDiminishedDiscord NF
-    # The `style` can be specified to pick a specific face.
+    family: "RictyDiminishedDiscord NF"
     style: Regular
 
   # Bold font face
   bold:
-    family: RictyDiminishedDiscord NF
-    # The `style` can be specified to pick a specific face.
+    family: "RictyDiminishedDiscord NF"
     style: Bold
 
   # Italic font face
   italic:
-    family: RictyDiminishedDiscord NF
-    # The `style` can be specified to pick a specific face.
+    family: "RictyDiminishedDiscord NF"
     style: Italic
 
   # Point size
@@ -399,7 +396,7 @@ key_bindings:
   # Command
   - { key: A,         mods: Command, chars: "\e[1;P9"                    }
   - { key: B,         mods: Command, chars: "\e[1;P10"                   }
-  - { key: C,         mods: Command, action: Copy                        }
+  - { key: C,         mods: Command, chars: "\e[1;P11"                   }
   - { key: D,         mods: Command, chars: "\e[1;P12"                   }
   - { key: E,         mods: Command, chars: "\e[1;P13"                   }
   - { key: F,         mods: Command, chars: "\e[1;P14"                   }
