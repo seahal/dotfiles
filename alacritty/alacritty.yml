@@ -391,7 +391,7 @@ key_bindings:
   - { key: F11,      mods: Control, chars: "\x1b[23;5~"                  }
   - { key: F12,      mods: Control, chars: "\x1b[24;5~"                  }
   - { key: Space,    mods: Control, chars: "\x00"                        } # Ctrl + Space
-  - { key: Minus,    mods: Control, action: None                         } # Ctrl + Minus / Note: I do not like C-- as C-_ 
+  - { key: Minus,    mods: Control, action: None                         } # Ctrl + Minus / Note: I do not like C-- as C-_
   # Control|Shift
   - { key: Key2,      mods: Control|Shift, chars: "\x00"                 } # C-@
   # Command
@@ -557,7 +557,8 @@ key_bindings:
   - { key: Grave,     mods: Alt,       chars: "\x1b`"                    } # Alt + `
   - { key: Period,    mods: Alt,       chars: "\x1b."                    } # Alt + .
   - { key: Backslash, mods: Alt,       chars: "\x1b\\"                   } # Alt + \
-  - { key: Period,    mods: Alt,       chars: "\x1b."                    }
+  - { key: Period,    mods: Alt,       chars: "\x1b."                    } # M-,
+  - { key: Comma,     mods: Alt,       chars: "\x1b,"                    } # M-,
   - { key: LBracket,  mods: Alt,       chars: "\x1b["                    } # M-[
   - { key: RBracket,  mods: Alt,       chars: "\x1b]"                    } # M-]
   - { key: Semicolon, mods: Alt,       chars: "\x1b;"                    }
@@ -606,6 +607,7 @@ key_bindings:
 #  - { key: Minus,     mods: Control|Alt, chars: "\x3b-"                  } # C-M--
 # Control|Alt|Shift
 #  - { key: Equals,    mods: Control|Alt|Shift, chars: "\x3b+"            } # C-M-+
+
 
 # Base16 Zenburn 256 - alacritty color config
 #  (based on https://github.com/aaron-williamson/base16-alacritty/blob/master/colors/base16-zenburn-256.yml)
