@@ -35,7 +35,3 @@ set -g theme_display_git_master_branch yes
 set -g theme_git_worktree_support yes
 set -g theme_title_display_process yes
 set -g theme_color_scheme terminal2
-
-# Original Settings
-bind \cs __fzf_find_file
-bind \ct transpose-chars
