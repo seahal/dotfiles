@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 204
-    lines: 51
+    columns: 220
+    lines: 54
 
   # Window padding (changes require restart)
   #
@@ -93,15 +93,13 @@ font:
   # Bold font face
   bold:
     family: "RictyDiminishedDiscord NF"
-    style: Bold
 
   # Italic font face
   italic:
     family: "RictyDiminishedDiscord NF"
-    style: Italic
 
   # Point size
-  size: 14.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -120,7 +118,7 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # Display the time it takes to redraw each frame.
 render_timer: false
