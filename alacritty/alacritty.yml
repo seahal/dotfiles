@@ -93,10 +93,12 @@ font:
   # Bold font face
   bold:
     family: "RictyDiminishedDiscord NF"
+    style: Bold
 
   # Italic font face
   italic:
     family: "RictyDiminishedDiscord NF"
+    style: Oblique
 
   # Point size
   size: 13.0
@@ -207,7 +209,13 @@ selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  save_to_clipboard: false
+  save_to_clipboard: true
+
+# When set to `true`, selected text will be copied to the primary clipboard.
+save_to_clipboard: true
+
+# Allow terminal applications to change Alacritty's window title.
+dynamic_title: true
 
 cursor:
   # Cursor style
