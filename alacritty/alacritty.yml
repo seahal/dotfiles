@@ -1,5 +1,4 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -19,7 +18,7 @@ window:
   # If both are `0`, this setting is ignored.
   dimensions:
     columns: 220
-    lines: 54
+    lines: 60
 
   # Window padding (changes require restart)
   #
@@ -95,18 +94,18 @@ tabspaces: 8
 font:
   normal:
   # Normal (roman) font face
-    family: "RictyDiminishedDiscord NF"
+    family: "Cica"
     style: Regular
 
   # Bold font face
   bold:
-    family: "RictyDiminishedDiscord NF"
+    family: "Cica"
     style: Bold
 
   # Italic font face
   italic:
-    family: "RictyDiminishedDiscord NF"
-    style: Oblique
+    family: "Cica"
+    style: Italic
 
   # Point size
   size: 13.0
@@ -115,14 +114,14 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 5
+    y: 2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
   # Thin stroke font rendering (OS X only)
   #
@@ -619,38 +618,31 @@ key_bindings:
 # Control|Alt|Shift
 #  - { key: Equals,    mods: Control|Alt|Shift, chars: "\x3b+"            } # C-M-+
 
-
-# Base16 Zenburn 256 - alacritty color config
-#  (based on https://github.com/aaron-williamson/base16-alacritty/blob/master/colors/base16-zenburn-256.yml)
+# Colors (Iceberg)
 colors:
   # Default colors
   primary:
-    background: '0x383838'
-    foreground: '0xdcdccc'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x383838'
-    cursor: '0xdcdccc'
+    background: '0x161821'
+    foreground: '0xd2d4de'
 
   # Normal colors
   normal:
-    black:   '0x383838'
-    red:     '0xdca3a3'
-    green:   '0x5f7f5f'
-    yellow:  '0xe0cf9f'
-    blue:    '0x7cb8bb'
-    magenta: '0xdc8cc3'
-    cyan:    '0x93e0e3'
-    white:   '0xdcdccc'
+    black:   '0x161821'
+    red:     '0xe27878'
+    green:   '0xb4be82'
+    yellow:  '0xe2a478'
+    blue:    '0x84a0c6'
+    magenta: '0xa093c7'
+    cyan:    '0x89b8c2'
+    white:   '0xc6c8d1'
 
   # Bright colors
   bright:
-    black:   '0x6f6f6f'
-    red:     '0xdca3a3'
-    green:   '0x5f7f5f'
-    yellow:  '0xe0cf9f'
-    blue:    '0x7cb8bb'
-    magenta: '0xdc8cc3'
-    cyan:    '0x93e0e3'
-    white:   '0xffffff'
+    black:   '0x6b7089'
+    red:     '0xe98989'
+    green:   '0xc0ca8e'
+    yellow:  '0xe9b189'
+    blue:    '0x91acd1'
+    magenta: '0xada0d3'
+    cyan:    '0x95c4ce'
+    white:   '0xd2d4de'
