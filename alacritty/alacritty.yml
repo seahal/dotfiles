@@ -94,34 +94,34 @@ tabspaces: 8
 font:
   normal:
   # Normal (roman) font face
-    family: "Cica"
+    family: "RictyDiminishedDiscord NF"
     style: Regular
 
   # Bold font face
   bold:
-    family: "Cica"
+    family: "RictyDiminishedDiscord NF"
     style: Bold
 
   # Italic font face
   italic:
-    family: "Cica"
-    style: Italic
+    family: "RictyDiminishedDiscord NF"
+    style: Oblique
 
   # Point size
-  size: 13.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 2
+    y: 4
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 1
+    y: 2
 
   # Thin stroke font rendering (OS X only)
   #
@@ -617,32 +617,3 @@ key_bindings:
 #  - { key: Minus,     mods: Control|Alt, chars: "\x3b-"                  } # C-M--
 # Control|Alt|Shift
 #  - { key: Equals,    mods: Control|Alt|Shift, chars: "\x3b+"            } # C-M-+
-
-# Colors (Iceberg)
-colors:
-  # Default colors
-  primary:
-    background: '0x161821'
-    foreground: '0xd2d4de'
-
-  # Normal colors
-  normal:
-    black:   '0x161821'
-    red:     '0xe27878'
-    green:   '0xb4be82'
-    yellow:  '0xe2a478'
-    blue:    '0x84a0c6'
-    magenta: '0xa093c7'
-    cyan:    '0x89b8c2'
-    white:   '0xc6c8d1'
-
-  # Bright colors
-  bright:
-    black:   '0x6b7089'
-    red:     '0xe98989'
-    green:   '0xc0ca8e'
-    yellow:  '0xe9b189'
-    blue:    '0x91acd1'
-    magenta: '0xada0d3'
-    cyan:    '0x95c4ce'
-    white:   '0xd2d4de'
