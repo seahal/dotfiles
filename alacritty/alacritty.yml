@@ -18,7 +18,7 @@ window:
   # If both are `0`, this setting is ignored.
   dimensions:
     columns: 220
-    lines: 60
+    lines: 62
 
   # Window padding (changes require restart)
   #
@@ -76,7 +76,7 @@ scrolling:
   # to allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
-  faux_multiplier: 0
+  faux_multiplier: 1
 
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: true
@@ -94,34 +94,34 @@ tabspaces: 8
 font:
   normal:
   # Normal (roman) font face
-    family: "RictyDiminishedDiscord NF"
+    family: "Cica"
     style: Regular
 
   # Bold font face
   bold:
-    family: "RictyDiminishedDiscord NF"
+    family: "Cica"
     style: Bold
 
   # Italic font face
   italic:
-    family: "RictyDiminishedDiscord NF"
-    style: Oblique
+    family: "Cica"
+    style: Italic
 
   # Point size
-  size: 12.0
+  size: 13
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 4
+    y: 1
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
     x: 0
-    y: 2
+    y: 1
 
   # Thin stroke font rendering (OS X only)
   #
@@ -617,3 +617,47 @@ key_bindings:
 #  - { key: Minus,     mods: Control|Alt, chars: "\x3b-"                  } # C-M--
 # Control|Alt|Shift
 #  - { key: Equals,    mods: Control|Alt|Shift, chars: "\x3b+"            } # C-M-+
+
+# Base16 Zenburn 256 - alacritty color config
+# elnawe
+colors:
+  # Default colors
+  primary:
+    background: '0x363636'
+    foreground: '0xdcdccc'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x383838'
+    cursor: '0xdcdccc'
+
+  # Normal colors
+  normal:
+    black:   '0x383838'
+    red:     '0xdca3a3'
+    green:   '0x5f7f5f'
+    yellow:  '0xe0cf9f'
+    blue:    '0x7cb8bb'
+    magenta: '0xdc8cc3'
+    cyan:    '0x93e0e3'
+    white:   '0xdcdccc'
+
+  # Bright colors
+  bright:
+    black:   '0x6f6f6f'
+    red:     '0xdca3a3'
+    green:   '0x5f7f5f'
+    yellow:  '0xe0cf9f'
+    blue:    '0x7cb8bb'
+    magenta: '0xdc8cc3'
+    cyan:    '0x93e0e3'
+    white:   '0xffffff'
+
+  indexed_colors:
+    - { index: 16, color: '0xdfaf8f' }
+    - { index: 17, color: '0x000000' }
+    - { index: 18, color: '0x404040' }
+    - { index: 19, color: '0x606060' }
+    - { index: 20, color: '0x808080' }
+    - { index: 21, color: '0xc0c0c0' }
+

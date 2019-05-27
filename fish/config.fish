@@ -1,5 +1,6 @@
 # encoding
 set -x LANG ja_JP.UTF-8
+set fish_term24bit 1
 
 # alias
 alias emacs="emacs -nw"
@@ -22,13 +23,13 @@ set -U fish_user_paths $fish_user_paths $HOME/.cargo/bin
 
 # bobthefish
 set -g theme_avoid_ambiguous_glyphs yes
-set -g theme_powerline_fonts yes
+set -g theme_powerline_fonts no
 set -g theme_nerd_fonts yes
 set -g theme_show_exit_status yes
 set -g theme_display_cmd_duration yes
 set -g theme_display_git_ahead_verbose yes
 set -g theme_display_git_dirty_verbose yes
-set -g theme_display_git_master_branch no
+set -g theme_display_git_master_branch yes
 set -g theme_git_worktree_support yes
 set -g theme_title_display_process yes
-set -g theme_color_scheme dracula
+set -g theme_color_scheme gruvbox
