@@ -12,3 +12,4 @@
 ## emacs
 - Run on mac.
 - Use IME patch.
+- Using [leaf.el](https://github.com/conao3/leaf.el)
