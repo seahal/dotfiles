@@ -42,6 +42,8 @@
 
 
 ; <<< Preferences >>>
+(set-language-environment 'Japanese) ; 言語
+(prefer-coding-system 'utf-8) ; utf-8 を使いたい
 (savehist-mode +1) ;; コマンド履歴を保存
 (save-place-mode +1) ;; 最後のカーソル位置を記録
 (recentf-mode +1) ;; ファイルの閲覧履歴を保存
@@ -66,6 +68,13 @@
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
+;; Tab preferences
+(tab-bar-mode +1) ; 最初からタブをだす
+(global-set-key (kbd "s-t") 'tab-new)
+(global-set-key (kbd "s-w") 'tab-close)
+(global-set-key (kbd "s-}") 'tab-next)
+(global-set-key (kbd "s-{") 'tab-previous)
+
 
 
 
@@ -201,3 +210,4 @@
 
 
 ;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
+;(desktop-save-mode 1) ; tabの構成を含めて復元できる (実質的な永続化の実現)
