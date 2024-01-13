@@ -3,4 +3,9 @@
   - [tmux](https://github.com/tmux/tmux)
   - [Alacritty](https://github.com/jwilm/alacritty)
   - [emacs](https://github.com/jwilm/alacritty)
-  - [Fish shell](https://fishshell.com)
+
+# Notice!
+## tmux
+- needs [tpm](https://github.com/tmux-plugins/tpm)
+## Alacritty
+- needs [Alacritty Theme](https://github.com/alacritty/alacritty-theme)
