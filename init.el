@@ -2,7 +2,6 @@
 (when (and (memq window-system '(ns nil))
            (fboundp 'mac-get-current-input-source))
   (when (version< "27.0" emacs-version)
-    ;; Required for some cases when auto detection is failed or the locale is "en".
     (custom-set-variables
      '(mac-default-input-source "com.google.inputmethod.Japanese.base")))
   (mac-input-method-mode 1))
@@ -57,6 +56,8 @@
 (tool-bar-mode -1) ;; ツールバーを無効
 (scroll-bar-mode -1) ;; スクロールバーを無効
 (setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
+(global-whitespace-mode +1) ; 末尾のスペースを可視化
+(gcmh-mode +1)
 ;; 余計なファイルを生成させない
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -115,6 +116,15 @@
   (nyan-mode 1))
 
 
+
+(leaf dashboard
+  :doc "emacs startup screen"
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+
+
 (leaf vertico
   :ensure t
   :config
@@ -124,13 +134,13 @@
 
 
 (leaf corfu
-  :ensure t
-  :hook (after-init-hook . corfu-mode))
+  :ensure t)
 
 
 
 (leaf eglot
-  :ensure t)
+  :ensure t
+)
 
 
 
@@ -158,8 +168,9 @@
 (leaf point-undo
   :el-get "emacsmirror/point-undo"
   :bind
-  ("s-<" . point-undo)   
+  ("s-<" . point-undo)
   ("s->" . point-redo))
+
 
 
 (leaf bm
@@ -178,12 +189,11 @@
   :hook (after-init-hook . yafolding-mode))
 
 
+
 (leaf rust-mode
   :custom
   (rust-indent-offset . 4)
   (rust-format-on-save . t)
   (rust-format-show-buffer . nil)) ; formatの度にbufferが分割するのを避ける
-
-
 (leaf cargo
   :ensure t)
