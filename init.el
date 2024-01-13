@@ -32,7 +32,7 @@
     (leaf-keywords-init)))
 
 
-;;; Leaf の設定 
+;;; Leaf の設定
 (leaf leaf-tree :ensure t)
 (leaf leaf-convert :ensure t)
 (leaf transient-dwim
@@ -41,7 +41,7 @@
 
 
 
-;;; backup 
+; <<< Preferences >>>
 (savehist-mode +1) ;; コマンド履歴を保存
 (save-place-mode +1) ;; 最後のカーソル位置を記録
 (recentf-mode +1) ;; ファイルの閲覧履歴を保存
@@ -49,25 +49,19 @@
 (global-auto-revert-mode +1) ;; 他ファイルの変更を常に反映する
 (global-hl-line-mode +1) ;; 現在行を強調
 (global-display-line-numbers-mode +1) ;; 左側に行番号を表示する
-(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
 (electric-pair-mode +1) ;; 括弧を補完する
 (pixel-scroll-mode +1) ;; マウスホイールのスクロール幅を一般的なものに変更
 (menu-bar-mode -1) ;; メニューバーを無効
 (tool-bar-mode -1) ;; ツールバーを無効
 (scroll-bar-mode -1) ;; スクロールバーを無効
-(setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
 (global-whitespace-mode +1) ; 末尾のスペースを可視化
-(gcmh-mode +1)
-;; 余計なファイルを生成させない
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq auto-save-list-file-prefix nil)
-
-
-
-
-
-;; quiet startup
+(gcmh-mode +1) ; emacs のガベージコレクション
+(setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
+;;; Back up file をつくらせない
+(setq make-backup-files nil) ; 余計なファイルを生成させない
+(setq auto-save-default nil) ; 自動保存を使用しない
+(setq auto-save-list-file-prefix nil) ; ~ が最後につくファイルを作らせない
+;;; quiet startup
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
@@ -80,10 +74,12 @@
   :hook (after-init-hook . exec-path-from-shell-initialize))
 
 
+
 ;; font
 (setq-default line-spacing 8)
 (leaf nerd-icons :ensure t)
 (leaf all-the-icons :ensure t)
+
 
 
 ;; Theme
@@ -91,8 +87,8 @@
   :if (display-graphic-p)
   :ensure t
   :custom
-  (doom-themes-enable-italic . nil)
   (doom-themes-enable-bold . t)
+  (doom-themes-enable-italic . nil)
   :config
   (load-theme 'doom-vibrant t)
   (doom-themes-visual-bell-config)
@@ -140,8 +136,10 @@
 
 (leaf eglot
   :ensure t
-)
-
+  :config
+  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'ruby-mode-hook 'eglot-ensure))
 
 
 
@@ -197,3 +195,9 @@
   (rust-format-show-buffer . nil)) ; formatの度にbufferが分割するのを避ける
 (leaf cargo
   :ensure t)
+
+
+
+
+
+;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
