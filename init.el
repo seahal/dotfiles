@@ -136,19 +136,30 @@
   (vertico-mode +1)
   (vertico-buffer-mode t))
 
-
-
-(leaf corfu
-  :ensure t)
-
-
-
 (leaf eglot
   :ensure t
   :config
+  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
   (add-hook 'typescript-mode-hook 'eglot-ensure)
   (add-hook 'rust-mode-hook 'eglot-ensure)
   (add-hook 'ruby-mode-hook 'eglot-ensure))
+
+
+(use-package corfu
+  :custom ((corfu-auto t)
+           (corfu-auto-delay 0)
+           (corfu-auto-prefix 1)
+           (corfu-cycle t)
+           (corfu-on-exact-match nil)
+           (tab-always-indent 'complete))
+  :bind (nil
+         :map corfu-map
+         ("RET" . corfu-insert)
+         ("<return>" . corfu-insert))
+  :init
+  (global-corfu-mode +1))
+
+
 
 
 
@@ -211,3 +222,21 @@
 
 ;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
 ;(desktop-save-mode 1) ; tabの構成を含めて復元できる (実質的な永続化の実現)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mac-default-input-source "com.google.inputmethod.Japanese.base" t)
+ '(package-selected-packages
+   '(all-the-icons blackout bm cargo corfu-prescient dashboard
+		   doom-modeline doom-themes eglot el-get
+		   exec-path-from-shell hydra leaf-convert
+		   leaf-keywords leaf-tree nerd-icons nyan-mode
+		   transient-dwim undohist vertico yafolding yasnippet)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
