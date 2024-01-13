@@ -6,6 +6,9 @@
 
 # Notice!
 ## tmux
-- needs [tpm](https://github.com/tmux-plugins/tpm)
+- needs [tpm](https://github.com/tmux-plugins/tpm).
 ## Alacritty
-- needs [Alacritty Theme](https://github.com/alacritty/alacritty-theme)
+- needs [Alacritty Theme](https://github.com/alacritty/alacritty-theme).
+## emacs
+- Run on mac.
+- Use IME patch.
