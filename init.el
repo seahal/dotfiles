@@ -40,7 +40,6 @@
   :bind (("M-=" . transient-dwim-dispatch)))
 
 
-
 ; <<< Preferences >>>
 (set-language-environment 'Japanese) ; 言語
 (prefer-coding-system 'utf-8) ; utf-8 を使いたい
@@ -56,13 +55,17 @@
 (menu-bar-mode -1) ;; メニューバーを無効
 (tool-bar-mode -1) ;; ツールバーを無効
 (scroll-bar-mode -1) ;; スクロールバーを無効
-(global-whitespace-mode +1) ; 末尾のスペースを可視化
 (gcmh-mode +1) ; emacs のガベージコレクション
+(cua-mode t) ; 矩形選択モード
+(line-number-mode t) ;; ステータスバーに行番号表示
+(column-number-mode t);; ステータスバーに列番号表示
+(setq-default indent-tabs-mode nil) ;;タブインデント禁止
 (setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
 ;;; Back up file をつくらせない
 (setq make-backup-files nil) ; 余計なファイルを生成させない
 (setq auto-save-default nil) ; 自動保存を使用しない
 (setq auto-save-list-file-prefix nil) ; ~ が最後につくファイルを作らせない
+(setq delete-auto-save-files t) ; 終了時にオートセーブファイルを削除する
 ;;; quiet startup
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-message t)
@@ -74,7 +77,14 @@
 (global-set-key (kbd "s-w") 'tab-close)
 (global-set-key (kbd "s-}") 'tab-next)
 (global-set-key (kbd "s-{") 'tab-previous)
-
+;; font
+(setq-default line-spacing 8)
+(set-face-attribute 'default nil
+                    :family "HackGen35 Console NF"
+                    :height 125)
+;; 末尾のスペースを可視化
+(global-whitespace-mode +1)
+(setq whitespace-line-column 120) ; 1行が120文字を超えたら警告を出す。
 
 
 
@@ -84,8 +94,6 @@
 
 
 
-;; font
-(setq-default line-spacing 8)
 (leaf nerd-icons :ensure t)
 (leaf all-the-icons :ensure t)
 
@@ -218,6 +226,28 @@
 
 
 
+
+
+
+
+(add-hook 'kill-emacs-hook 'frame-size-save); Emacs終了時
+(add-hook 'window-setup-hook 'frame-size-resume); Emacs起動時
+(defun frame-size-save ()
+  (set-buffer
+   (find-file-noselect (expand-file-name "~/.emacs.d/.framesize")))
+  (erase-buffer)
+  (insert (concat
+"(set-frame-width (selected-frame) "
+           (int-to-string (frame-width))
+") (set-frame-height (selected-frame) "
+           (int-to-string (frame-height))
+")"))
+  (save-buffer)
+  (kill-buffer))
+(defun frame-size-resume ()
+  (let* ((file "~/.emacs.d/.framesize"))
+    (if (file-exists-p file)
+        (load-file file))))
 
 
 ;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
