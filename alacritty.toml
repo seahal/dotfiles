@@ -10,7 +10,7 @@ padding = { x = 3, y = 3 }
 dynamic_padding = true
 blur = true
 opacity = 0.9
-option_as_alt = "None"
+option_as_alt = "Both"
 
 
 
