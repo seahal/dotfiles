@@ -103,92 +103,6 @@
 (leaf doom-themes
   :if (display-graphic-p)
   :ensure t
-
-
-use std::collections::BTreeSet;
-
-fn main() {
-    let s: &str = "abc😀👍";
-    println!("{}", s.len());
-    println!("{}", s.chars().count());
-    println!("{}", s.chars().nth(2).unwrap());
-
-    let s: &str = "JAPAN🇯🇵";
-    let c: char = s.chars().nth(5).unwrap();
-    assert_eq!(c, '🇯');
-
-    println!("{:?}", 10i32.checked_div(0).is_none());
-    println!("{:?}", 0u8.checked_sub(1).is_none());
-
-    let s: Option<i32> = None;
-    println!("{}", s.unwrap_or_default());
-    println!("{}", s.unwrap_or(5));
-    println!("{}", s.unwrap_or_else(|| 3));
-
-    let v: Vec<String> = vec![
-        String::from("aaa"),
-        String::from("bbb"),
-        String::from("ccc"),
-    ];
-    println!("{}, {}", v.join(","), v.concat());
-
-    let mut set = BTreeSet::new();
-    set.insert(10);
-    set.insert(20);
-    set.insert(30);
-    set.insert(40);
-    set.insert(50);
-    println!("{}", set.iter().next().unwrap());
-    println!("{}", set.iter().next_back().unwrap());
-
-    println!("{} <=> {}", 10u32.count_zeros(), 10u32.count_ones());
-    println!("{} <=> {}", 10usize.count_zeros(), 10usize.count_ones());
-
-    eprintln!("eee");
-}
-
-
-use std::collections::BTreeSet;
-
-fn main() {
-    let s: &str = "abc😀👍";
-    println!("{}", s.len());
-    println!("{}", s.chars().count());
-    println!("{}", s.chars().nth(2).unwrap());
-
-    let s: &str = "JAPAN🇯🇵";
-    let c: char = s.chars().nth(5).unwrap();
-    assert_eq!(c, '🇯');
-
-    println!("{:?}", 10i32.checked_div(0).is_none());
-    println!("{:?}", 0u8.checked_sub(1).is_none());
-
-    let s: Option<i32> = None;
-    println!("{}", s.unwrap_or_default());
-    println!("{}", s.unwrap_or(5));
-    println!("{}", s.unwrap_or_else(|| 3));
-
-    let v: Vec<String> = vec![
-        String::from("aaa"),
-        String::from("bbb"),
-        String::from("ccc"),
-    ];
-    println!("{}, {}", v.join(","), v.concat());
-
-    let mut set = BTreeSet::new();
-    set.insert(10);
-    set.insert(20);
-    set.insert(30);
-    set.insert(40);
-    set.insert(50);
-    println!("{}", set.iter().next().unwrap());
-    println!("{}", set.iter().next_back().unwrap());
-
-    println!("{} <=> {}", 10u32.count_zeros(), 10u32.count_ones());
-    println!("{} <=> {}", 10usize.count_zeros(), 10usize.count_ones());
-
-    eprintln!("eee");
-}
   :custom
   (doom-themes-enable-bold . t)
   (doom-themes-enable-italic . nil)
@@ -233,6 +147,15 @@ fn main() {
 
 
 
+(leaf eglot
+  :ensure t
+  :config
+  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'ruby-mode-hook 'eglot-ensure))
+
+
 (use-package corfu
   :custom ((corfu-auto t)
            (corfu-auto-delay 0)
@@ -247,16 +170,6 @@ fn main() {
          ("<return>" . corfu-insert))
   :init
   (global-corfu-mode +1))
-
-
-
-(leaf eglot
-  :ensure t
-  :config
-  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
-  (add-hook 'typescript-mode-hook 'eglot-ensure)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
-  (add-hook 'ruby-mode-hook 'eglot-ensure))
 
 
 
@@ -279,6 +192,15 @@ fn main() {
   :config (undo-tree-mode t))
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+
+
+(leaf hydra
+  :doc "Make bindings that stick around."
+  :req "cl-lib-0.5" "lv-0"
+  :tag "bindings"
+  :url "https://github.com/abo-abo/hydra"
+  :added "2022-05-23"
+  :ensure t)
 
 
 (leaf point-undo
