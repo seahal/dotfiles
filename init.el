@@ -203,6 +203,16 @@
   :ensure t)
 
 
+(leaf which-key
+  :ensure t
+  :require t
+  :config
+  (which-key-mode)
+  (which-key-setup-side-window-right-bottom))
+
+
+
+
 (leaf point-undo
   :el-get "emacsmirror/point-undo"
   :bind
@@ -214,9 +224,10 @@
 (leaf bm
   :ensure t
   :bind
-  (("s-\\" . bm-toggle)
-   ("s-]" . bm-previous)
-   ("s-[" . bm-next)))
+  (("C-c b t" . bm-toggle)
+   ("C-c b s" . bm-show-all)
+   ("C-c b p" . bm-previous)
+   ("C-c b n" . bm-next)))
 
 
 
