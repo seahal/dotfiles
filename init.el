@@ -62,9 +62,11 @@
 (setq-default indent-tabs-mode nil) ;;タブインデント禁止
 (setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
 ;;; Back up file をつくらせない
-(setq make-backup-files nil) ; 余計なファイルを生成させない
-(setq auto-save-default nil) ; 自動保存を使用しない
-(setq auto-save-list-file-prefix nil) ; ~ が最後につくファイルを作らせない
+(setq make-backup-files t) ; ~ が最後につくファイルを作らせない
+(setq backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
+(setq auto-save-default t) ; 自動保存を使用する
+(setq auto-save-file-name-transforms   '((".*" "~/.emacs.d/autosave/" t)))
+(setq create-lockfiles nil) ; ロックファイル (.#foo.txt) を作らせない
 (setq delete-auto-save-files t) ; 終了時にオートセーブファイルを削除する
 ;;; quiet startup
 (setq inhibit-startup-screen t)
@@ -85,6 +87,7 @@
 ;; 末尾のスペースを可視化
 (global-whitespace-mode +1)
 (setq whitespace-line-column 120) ; 1行が120文字を超えたら警告を出す。
+
 
 
 
@@ -111,6 +114,7 @@
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
+
 
 
 
@@ -158,7 +162,7 @@
 
 (use-package corfu
   :custom ((corfu-auto t)
-           (corfu-auto-delay 0)
+           (corfu-auto-delay 0.2)
            (corfu-auto-prefix 1)
            (corfu-cycle t)
            (corfu-on-exact-match nil)
@@ -167,9 +171,11 @@
          :map corfu-map
          ("C-i" . corfu-insert)
          ("RET" . corfu-insert)
+         ("<tab>" . corfu-next)
+         ("S-<tab>" . corfu-previous)   ;
          ("<return>" . corfu-insert))
   :init
-  (global-corfu-mode +1))
+  (global-corfu-mode))
 
 
 
@@ -274,23 +280,6 @@
         (load-file file))))
 
 
+
 ;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
 ;(desktop-save-mode 1) ; tabの構成を含めて復元できる (実質的な永続化の実現)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mac-default-input-source "com.google.inputmethod.Japanese.base" t)
- '(package-selected-packages
-   '(all-the-icons blackout bm cargo corfu-prescient dashboard
-		   doom-modeline doom-themes eglot el-get
-		   exec-path-from-shell hydra leaf-convert
-		   leaf-keywords leaf-tree nerd-icons nyan-mode
-		   transient-dwim undohist vertico yafolding yasnippet)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
