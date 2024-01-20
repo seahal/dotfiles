@@ -64,9 +64,8 @@
 ;;; Back up file をつくらせない
 (setq make-backup-files t) ; ~ が最後につくファイルを作らせない
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
-(setq auto-save-default t) ; 自動保存を使用する
-(setq auto-save-file-name-transforms   '((".*" "~/.emacs.d/autosave/" t)))
 (setq create-lockfiles nil) ; ロックファイル (.#foo.txt) を作らせない
+(setq auto-save-default nil) ; 自動保存を使用しない
 (setq delete-auto-save-files t) ; 終了時にオートセーブファイルを削除する
 ;;; quiet startup
 (setq inhibit-startup-screen t)
@@ -79,6 +78,7 @@
 (global-set-key (kbd "s-w") 'tab-close)
 (global-set-key (kbd "s-}") 'tab-next)
 (global-set-key (kbd "s-{") 'tab-previous)
+(setq tab-bar-new-button-show nil) ; シンプルじゃないので新規タブボタンを消す
 ;; font
 (setq-default line-spacing 8)
 (set-face-attribute 'default nil
@@ -201,13 +201,13 @@
 
 
 
-(leaf hydra
-  :doc "Make bindings that stick around."
-  :req "cl-lib-0.5" "lv-0"
-  :tag "bindings"
-  :url "https://github.com/abo-abo/hydra"
-  :added "2022-05-23"
-  :ensure t)
+;; (leaf hydra
+;;   :doc "Make bindings that stick around."
+;;   :req "cl-lib-0.5" "lv-0"
+;;   :tag "bindings"
+;;   :url "https://github.com/abo-abo/hydra"
+;;   :added "2022-05-23"
+;;   :ensure t)
 
 
 (leaf which-key
