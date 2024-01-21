@@ -1,4 +1,4 @@
-;;; IMEパッチ for OSX, https://github.com/takaxp/ns-inline-patch
+;; IMEパッチ for OSX, https://github.com/takaxp/ns-inline-patch
 (when (and (memq window-system '(ns nil))
            (fboundp 'mac-get-current-input-source))
   (when (version< "27.0" emacs-version)
@@ -23,7 +23,6 @@
     :ensure t
     :init
     ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
-    (leaf hydra :ensure t)
     (leaf el-get :ensure t)
     (leaf blackout :ensure t)
 
@@ -161,6 +160,7 @@
 
 
 (use-package corfu
+  :after eglot
   :custom ((corfu-auto t)
            (corfu-auto-delay 0.2)
            (corfu-auto-prefix 1)
@@ -219,6 +219,20 @@
 
 
 
+(leaf evil
+  :doc "vi emulation for emacs"
+  :ensure t
+  :init
+  (evil-mode t))
+
+
+
+(leaf expand-region
+  :ensure t
+  :bind (("M-@" . er/expand-region)))
+
+
+
 
 (leaf point-undo
   :el-get "emacsmirror/point-undo"
@@ -229,12 +243,12 @@
 
 
 (leaf bm
-  :ensure t
-  :bind
-  (("C-c b t" . bm-toggle)
-   ("C-c b s" . bm-show-all)
-   ("C-c b p" . bm-previous)
-   ("C-c b n" . bm-next)))
+:ensure t
+:bind(("C-c b m" . bm-toggle)
+      ("C-c b t" . bm-toggle)
+      ("C-c b s" . bm-show-all)
+      ("C-c b p" . bm-previous)
+      ("C-c b n" . bm-next)))
 
 
 

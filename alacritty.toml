@@ -15,7 +15,7 @@ option_as_alt = "Both"
 
 
 [env]
-term = "alacritty"
+term = "xterm-256color"
 
 
 [font]
