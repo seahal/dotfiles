@@ -55,7 +55,6 @@
 (tool-bar-mode -1) ;; ツールバーを無効
 (scroll-bar-mode -1) ;; スクロールバーを無効
 (gcmh-mode +1) ; emacs のガベージコレクション
-(cua-mode t) ; 矩形選択モード
 (line-number-mode t) ;; ステータスバーに行番号表示
 (column-number-mode t);; ステータスバーに列番号表示
 (setq-default indent-tabs-mode nil) ;;タブインデント禁止
@@ -86,6 +85,10 @@
 ;; 末尾のスペースを可視化
 (global-whitespace-mode +1)
 (setq whitespace-line-column 120) ; 1行が120文字を超えたら警告を出す。
+;; 矩形選択モード
+(cua-mode 0)
+;(setaaaaq cua-enable-cua-keys nil) ; C-<ret> が邪魔なので
+;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
 
 
 
