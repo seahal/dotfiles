@@ -57,8 +57,16 @@
 (gcmh-mode +1) ; emacs のガベージコレクション
 (line-number-mode t) ;; ステータスバーに行番号表示
 (column-number-mode t);; ステータスバーに列番号表示
-(setq-default indent-tabs-mode nil) ;;タブインデント禁止
 (setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
+;;; 最近のファイル
+(recentf-mode 1)
+(setq recentf-auto-cleanup 'never)
+(setq recentf-max-menu-items 1000)
+(setq recentf-max-saved-items 1000)
+;;; タブ
+(setq-default indent-tabs-mode nil) ;; タブインデント禁止
+(setq-default tab-width 4)
+(add-hook 'before-save-hook 'whitespace-cleanup) ; Cleanup whitespace on save.
 ;;; Back up file をつくらせない
 (setq make-backup-files t) ; ~ が最後につくファイルを作らせない
 (setq backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
@@ -141,6 +149,10 @@
   :doc "emacs startup screen"
   :ensure t
   :config
+  (setq dashboard-set-heading-icons t)
+  (setq show-week-agenda-p t)
+  (setq dashboard-items '((recents  . 10)
+                          (bookmarks . 10)))
   (dashboard-setup-startup-hook))
 
 
@@ -150,7 +162,8 @@
   :config
   (vertico-mode +1)
   (vertico-buffer-mode t))
-
+(leaf orderless
+  :ensure t)
 
 
 (leaf eglot
