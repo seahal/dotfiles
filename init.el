@@ -98,8 +98,13 @@
 ;(setaaaaq cua-enable-cua-keys nil) ; C-<ret> が邪魔なので
 ;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
 
-
-
+; 起動時のサイズ,表示位置,フォントを指定
+(setq initial-frame-alist
+      (append (list
+           '(top . 0)
+           '(left . 0))
+          initial-frame-alist))
+(setq default-frame-alist initial-frame-alist)
 
 (leaf exec-path-from-shell
   :ensure t
