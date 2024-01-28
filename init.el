@@ -167,7 +167,10 @@
   :config
   (vertico-mode +1)
   (vertico-buffer-mode t))
-(leaf orderless
+
+
+
+(leaf magit
   :ensure t)
 
 
