@@ -259,20 +259,26 @@
 
 
 (leaf point-undo
+  :doc  "ポイントの位置を戻してくれるやつ"
   :el-get "emacsmirror/point-undo"
   :bind
-  ("s-<" . point-undo)
-  ("s->" . point-redo))
+  ("<f7>" . point-undo)
+  ("S-<f7>" . point-redo))
+
+
+
+(leaf yascroll
+  :ensure t
+  :init
+  (global-yascroll-bar-mode 1))
 
 
 
 (leaf bm
 :ensure t
-:bind(("C-c b m" . bm-toggle)
-      ("C-c b t" . bm-toggle)
-      ("C-c b s" . bm-show-all)
-      ("C-c b p" . bm-previous)
-      ("C-c b n" . bm-next)))
+:bind(("M-\\" . bm-toggle)
+      ("M-[" . bm-previous)
+      ("M-]" . bm-next)))
 
 
 
@@ -293,13 +299,14 @@
   :ensure t)
 
 
-
-
+(leaf enh-ruby-mode
+  :ensure t)
 
 
 
 (add-hook 'kill-emacs-hook 'frame-size-save); Emacs終了時
 (add-hook 'window-setup-hook 'frame-size-resume); Emacs起動時
+
 (defun frame-size-save ()
   (set-buffer
    (find-file-noselect (expand-file-name "~/.emacs.d/.framesize")))
@@ -321,3 +328,22 @@
 
 ;(which-function-mode +1) ;; モードラインにカーソル上の関数名等を表示する
 ;(desktop-save-mode 1) ; tabの構成を含めて復元できる (実質的な永続化の実現)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mac-default-input-source "com.google.inputmethod.Japanese.base" t)
+ '(package-selected-packages
+   '(all-the-icons blackout bm cargo dashboard doom-modeline doom-themes
+                   eglot el-get enh-ruby-mode evil
+                   exec-path-from-shell expand-region leaf-convert
+                   leaf-keywords leaf-tree magit nerd-icons nyan-mode
+                   transient-dwim undohist vertico which-key yafolding
+                   yasnippet)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
