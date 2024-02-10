@@ -49,7 +49,6 @@
 (global-auto-revert-mode +1) ;; 他ファイルの変更を常に反映する
 (global-hl-line-mode +1) ;; 現在行を強調
 (global-display-line-numbers-mode +1) ;; 左側に行番号を表示する
-(electric-pair-mode +1) ;; 括弧を補完する
 (pixel-scroll-mode +1) ;; マウスホイールのスクロール幅を一般的なものに変更
 (menu-bar-mode -1) ;; メニューバーを無効
 (tool-bar-mode -1) ;; ツールバーを無効
@@ -129,7 +128,6 @@
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
-
 
 
 
@@ -271,6 +269,12 @@
   :ensure t
   :init
   (global-yascroll-bar-mode 1))
+
+
+
+(leaf smartparens
+  :ensure t
+  :init (smartparens-global-mode t))
 
 
 
