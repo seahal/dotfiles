@@ -303,8 +303,9 @@
   :ensure t)
 
 
-(leaf enh-ruby-mode
+(leaf rubocop
   :ensure t)
+(setq rubocop-autocorrect-on-save t)
 
 
 
