@@ -225,7 +225,7 @@
   :doc '樹状に履歴を残してくれるやつ'
   :ensure t
   :bind ("C-x u" . undo-tree-visualize)
-  :init (undo-tree-mode t))
+  :init (global-undo-tree-mode t))
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 
