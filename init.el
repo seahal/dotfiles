@@ -95,8 +95,7 @@
 ;; 矩形選択モード
 (cua-mode 0)
 ;(setaaaaq cua-enable-cua-keys nil) ; C-<ret> が邪魔なので
-;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
-
+                                        ;(define-key global-map (kbd "C-x SPC") 'cua-set-rectangle-mark)
 ; 起動時のサイズ,表示位置,フォントを指定
 (setq initial-frame-alist
       (append (list
@@ -104,6 +103,13 @@
            '(left . 0))
           initial-frame-alist))
 (setq default-frame-alist initial-frame-alist)
+
+
+
+; mac だけの機能
+(global-set-key (kbd "s-@") 'other-frame) ; Comand + @ で別のフレームをアクティビティにする
+
+
 
 (leaf exec-path-from-shell
   :ensure t
@@ -176,7 +182,9 @@
   :ensure t
   :config
   (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (add-hook 'javascript-mode 'eglot-ensure)
   (add-hook 'typescript-mode-hook 'eglot-ensure)
+  (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'rust-mode-hook 'eglot-ensure)
   (add-hook 'ruby-mode-hook 'eglot-ensure))
 
@@ -217,7 +225,7 @@
   :doc '樹状に履歴を残してくれるやつ'
   :ensure t
   :bind ("C-x u" . undo-tree-visualize)
-  :config (undo-tree-mode t))
+  :init (undo-tree-mode t))
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 
@@ -241,18 +249,17 @@
 
 
 
+(leaf expand-region
+  :ensure t
+  :bind (("M-@" . er/expand-region)))
+
+
+
 (leaf evil
   :doc "vi emulation for emacs"
   :ensure t
   :init
   (evil-mode t))
-
-
-
-(leaf expand-region
-  :ensure t
-  :bind (("M-@" . er/expand-region)))
-
 
 
 
@@ -303,12 +310,19 @@
   :ensure t)
 
 
+
+(leaf python-mode
+  :ensure t)
+
+
+
 (leaf rubocop
   :ensure t)
 (setq rubocop-autocorrect-on-save t)
 
 
 
+;;; フレームの位置を保存して次回同じ場所で開くようにする
 (add-hook 'kill-emacs-hook 'frame-size-save); Emacs終了時
 (add-hook 'window-setup-hook 'frame-size-resume); Emacs起動時
 
