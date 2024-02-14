@@ -117,6 +117,13 @@
 
 
 
+(leaf uniquify ; 同一バッファ名にディレクトリ付与
+  :custom
+  (uniquify-buffer-name-style . 'post-forward-angle-brackets)
+  (uniquify-ignore-buffers-re . "*[^*]+*"))
+
+
+
 (leaf nerd-icons :ensure t)
 (leaf all-the-icons :ensure t)
 
@@ -317,9 +324,10 @@
 
 
 (leaf rubocop
-  :ensure t)
+  :ensure t
+  :init
+  (rubocop-mode t))
 (setq rubocop-autocorrect-on-save t)
-
 
 
 ;;; フレームの位置を保存して次回同じ場所で開くようにする
