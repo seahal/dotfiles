@@ -56,6 +56,7 @@
 (gcmh-mode +1) ; emacs のガベージコレクション
 (line-number-mode t) ;; ステータスバーに行番号表示
 (column-number-mode t);; ステータスバーに列番号表示
+(setq require-final-newline t) ;; 最終行に空白を入れいる
 (setq confirm-kill-emacs 'y-or-n-p) ;; C-x C-c で閉じる時に、ワンクッション置く
 ;;; 最近のファイル
 (recentf-mode 1)
@@ -152,6 +153,7 @@
 (setq doom-modeline-major-mode-icon nil) ;; ファイルアイコンを消す
 
 
+
 (leaf nyan-mode
   :if (display-graphic-p)
   :after doom-modeline
@@ -185,10 +187,12 @@
   :ensure t)
 
 
+
 (leaf eglot
   :ensure t
   :config
   (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (add-hook 'c-mode 'eglot-ensure)
   (add-hook 'javascript-mode 'eglot-ensure)
   (add-hook 'typescript-mode-hook 'eglot-ensure)
   (add-hook 'python-mode-hook 'eglot-ensure)
