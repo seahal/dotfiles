@@ -29,7 +29,9 @@ In short:
 - Git versions the dotfiles.
 - GNU Stow places the dotfiles under `$HOME`.
 - mise manages language runtimes and development-tool versions.
-- OS package managers install system-level prerequisites.
+- Native OS package managers install Fish and other system-level prerequisites:
+  `pacman` on Arch Linux, `pkg` on FreeBSD, Homebrew on macOS, and `dnf` on
+  RHEL-family systems. Windows uses the package manager of its WSL distribution.
 
 ## Usage
 
@@ -63,3 +65,7 @@ stow --target="$HOME" --delete fish
 - Track hand-written configuration, not generated state.
 - Keep secrets, credentials, tokens, and machine-local data outside this
   repository.
+
+Machine-specific Fish settings belong in `~/.config/fish/custom.fish`. The
+managed Fish configuration loads this optional file last so that local settings
+can extend or override the shared defaults without entering Git history.
