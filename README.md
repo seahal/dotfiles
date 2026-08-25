@@ -12,6 +12,27 @@ links, while Git keeps the configuration versioned and portable.
 
 - `fish` — Fish shell configuration and plugin manifest
 
+## Toolchain Policy
+
+GNU Stow is the deployment layer for this repository. It installs each
+dotfiles package under `$HOME` by creating symbolic links, without taking
+responsibility for installing applications or language runtimes.
+
+[mise](https://mise.jdx.dev/) is the standard runtime and tool-version manager.
+Ruby, Rust, Node.js, and other supported development tools should be selected
+and versioned through mise instead of being configured independently in the
+Fish startup files. A runtime may still use its native backend internally—for
+example, mise can coordinate Rust toolchains provided by rustup.
+
+In short:
+
+- Git versions the dotfiles.
+- GNU Stow places the dotfiles under `$HOME`.
+- mise manages language runtimes and development-tool versions.
+- Native OS package managers install Fish and other system-level prerequisites:
+  `pacman` on Arch Linux, `pkg` on FreeBSD, Homebrew on macOS, and `dnf` on
+  RHEL-family systems. Windows uses the package manager of its WSL distribution.
+
 ## Usage
 
 Run Stow from the repository root:
@@ -44,3 +65,7 @@ stow --target="$HOME" --delete fish
 - Track hand-written configuration, not generated state.
 - Keep secrets, credentials, tokens, and machine-local data outside this
   repository.
+
+Machine-specific Fish settings belong in `~/.config/fish/custom.fish`. The
+managed Fish configuration loads this optional file last so that local settings
+can extend or override the shared defaults without entering Git history.

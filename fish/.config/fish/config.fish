@@ -4,48 +4,64 @@ end
 
 # Paths
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.cargo/bin
 
 # Add-ons
-zoxide init fish | source
-# ~/.local/bin/mise activate fish | source
-mise activate fish | source
+if type -q zoxide
+    zoxide init fish | source
+end
+
+if type -q mise
+    mise activate fish | source
+end
 
 # abbrs
-abbr -a y yazi
-abbr -a nv nvim
-abbr -a v vim
-abbr -a e emacs
+abbr --add --global y spf
+abbr --add --global nv nvim
+abbr --add --global e emacs
 
 # setting
-set -U fish_greeting # unshow greeting of fish shell opeing.
-set -x PAGER less #
-set -x EDITOR nvim
-set -x VISUAL nvim
+set -g fish_greeting
+set -gx PAGER less
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 # alias
-alias ls='exa'
-alias ll='exa -ahl --git'
-alias lt='exa -T'
-alias cat='bat --paging=never'
+if type -q eza
+    alias ls='eza'
+    alias ll='eza -ahl --git'
+    alias lt='eza -T'
+end
 
-# ?
-source ~/.safe-chain/scripts/init-fish.fish # Safe-chain Fish initialization script
+if type -q bat
+    alias cat='bat --paging=never'
+end
 
-# trash-cli
+# Safe-chain Fish initialization script
+set -l safe_chain_init "$HOME/.safe-chain/scripts/init-fish.fish"
+
+if test -f "$safe_chain_init"
+    source "$safe_chain_init"
+end
+
+# Use the system rm command when trash-cli is unavailable.
 function rm
-    trash-put $argv
+    if type -q trash-put
+        trash-put $argv
+    else
+        command rm $argv
+    end
 end
 
 # tide
-set -U tide_right_prompt_items status cmd_duration context jobs direnv bun node python rustc java php pulumi ruby go kubectl distrobox toolbox terraform nix_shell crystal elixir zig
+set -g tide_right_prompt_items status cmd_duration context jobs direnv bun node python rustc java php pulumi ruby go kubectl distrobox toolbox terraform nix_shell crystal elixir zig
 set -g tide_aws_enabled false
 set -g tide_azure_enabled false
 set -g tide_oci_enabled false
 set -g tide_gcloud_enabled false
 
-# Added by LM Studio CLI tool (lms)
-set -gx PATH $PATH /home/mslo/.lmstudio/bin
+# Machine-specific settings (not managed by this repository)
+set -l custom_config "$__fish_config_dir/custom.fish"
 
-# for Zinc
-set -gx RADV_PERFTEST aco
+if test -f "$custom_config"
+    source "$custom_config"
+end
