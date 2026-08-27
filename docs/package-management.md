@@ -123,7 +123,7 @@ The current Arch Linux machine uses the following package mapping:
 | `fd` | `fd` |
 | `rg` | `ripgrep` |
 | `trash-put` | `trash-cli` (optional) |
-| `cmigemo` | `cmigemo` (optional) |
+| `cmigemo` | AUR `cmigemo-git` (optional) |
 
 Provisional installation command:
 
@@ -147,6 +147,13 @@ sudo pacman -S --needed \
 ```
 
 `trash-cli` is intentionally excluded from the required package list.
+
+`cmigemo` is not in the official repositories; it is packaged in the AUR as
+`cmigemo-git`. Emacs uses it for romaji-driven incremental search over Japanese
+text, and the configuration disables the feature when it is absent, so it stays
+optional. Note that the dictionary is installed as
+`/usr/share/cmigemo/utf-8/migemo-dict`, not under `/usr/share/migemo`, which is
+the path Debian-family packages use.
 
 ## Platform Research Status
 

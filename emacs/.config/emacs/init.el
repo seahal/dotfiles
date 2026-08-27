@@ -327,18 +327,30 @@ Without this, C-g inside a completion session leaves the
   (completion-category-overrides '((file (styles partial-completion basic)))))
 
 ;; ローマ字で日本語を検索する。cmigemo と辞書が入っている環境でのみ有効。
-;; Arch Linux では: sudo pacman -S cmigemo
+;; Arch Linux では AUR: paru -S cmigemo-git
+(defvar my/migemo-dictionary-candidates
+  '(;; cmigemo の CMake ビルドが使う既定のパス (Arch の AUR パッケージなど)
+    "/usr/share/cmigemo/utf-8/migemo-dict"
+    "/usr/local/share/cmigemo/utf-8/migemo-dict"
+    ;; Homebrew
+    "/opt/homebrew/share/migemo/utf-8/migemo-dict"
+    ;; Debian/Ubuntu 系の migemo パッケージ
+    "/usr/share/migemo/utf-8/migemo-dict")
+  "Places a `migemo-dict' has been observed, in order of preference.
+The path differs per distribution, so it is probed rather than assumed.")
+
 (use-package migemo
   :custom
   (migemo-command "cmigemo")
   (migemo-options '("-q" "--emacs"))
-  (migemo-dictionary "/usr/share/migemo/utf-8/migemo-dict")
   (migemo-user-dictionary nil)
   (migemo-regex-dictionary nil)
   (migemo-coding-system 'utf-8-unix)
   :config
-  (when (and (executable-find migemo-command)
-             (file-readable-p migemo-dictionary))
+  ;; cmigemo か辞書が欠けている環境では静かに無効のままにする。
+  (when-let* ((dict (seq-find #'file-readable-p my/migemo-dictionary-candidates))
+              ((executable-find migemo-command)))
+    (setq migemo-dictionary dict)
     (migemo-init)))
 
 (defun my/consult-line (&optional at-point)
