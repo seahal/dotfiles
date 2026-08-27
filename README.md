@@ -11,6 +11,7 @@ links, while Git keeps the configuration versioned and portable.
 ## Packages
 
 - `fish` — Fish shell configuration and plugin manifest
+- `emacs` — Emacs configuration (`early-init.el` and `init.el`)
 
 ## Toolchain Policy
 
@@ -38,7 +39,7 @@ In short:
 Run Stow from the repository root:
 
 ```sh
-stow --target="$HOME" --no-folding fish
+stow --target="$HOME" --no-folding fish emacs
 ```
 
 Preview the operation before making changes:
@@ -69,3 +70,11 @@ stow --target="$HOME" --delete fish
 Machine-specific Fish settings belong in `~/.config/fish/custom.fish`. The
 managed Fish configuration loads this optional file last so that local settings
 can extend or override the shared defaults without entering Git history.
+
+The Emacs equivalent is `~/.config/emacs/custom-local.el`, which `init.el` loads
+last for the same reason. Emacs also writes two files of generated state into
+`~/.config/emacs` that are deliberately untracked: `custom.el`, produced by the
+Customize interface, and the `elpa/` package tree.
+
+Emacs uses the XDG location `~/.config/emacs`. A leftover `~/.emacs.d/init.el`
+would take precedence over it, so that directory must not be recreated.

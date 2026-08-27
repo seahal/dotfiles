@@ -57,6 +57,8 @@ native package is available:
 
 - eza
 - bat
+- fd
+- ripgrep
 - zoxide
 - superfile
 - Neovim
@@ -93,6 +95,7 @@ used internally to provide the selected Rust toolchain.
 These are not required for the standard environment:
 
 - trash-cli
+- cmigemo
 - safe-chain
 - LM Studio
 - GPU-specific tools and environment variables
@@ -117,7 +120,10 @@ The current Arch Linux machine uses the following package mapping:
 | `nvim` | `neovim` |
 | `emacs` | `emacs-wayland` |
 | `less` | `less` |
+| `fd` | `fd` |
+| `rg` | `ripgrep` |
 | `trash-put` | `trash-cli` (optional) |
+| `cmigemo` | `cmigemo` (optional) |
 
 Provisional installation command:
 
@@ -134,6 +140,8 @@ sudo pacman -S --needed \
   neovim \
   emacs-wayland \
   less \
+  fd \
+  ripgrep \
   curl \
   ca-certificates
 ```
