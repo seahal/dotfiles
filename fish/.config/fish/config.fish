@@ -20,7 +20,6 @@ abbr --add --global nv nvim
 abbr --add --global e emacs
 
 # setting
-set -g fish_greeting
 set -gx PAGER less
 set -gx EDITOR nvim
 set -gx VISUAL nvim
@@ -34,13 +33,6 @@ end
 
 if type -q bat
     alias cat='bat --paging=never'
-end
-
-# Safe-chain Fish initialization script
-set -l safe_chain_init "$HOME/.safe-chain/scripts/init-fish.fish"
-
-if test -f "$safe_chain_init"
-    source "$safe_chain_init"
 end
 
 # Use the system rm command when trash-cli is unavailable.
@@ -58,10 +50,3 @@ set -g tide_aws_enabled false
 set -g tide_azure_enabled false
 set -g tide_oci_enabled false
 set -g tide_gcloud_enabled false
-
-# Machine-specific settings (not managed by this repository)
-set -l custom_config "$__fish_config_dir/custom.fish"
-
-if test -f "$custom_config"
-    source "$custom_config"
-end
